@@ -32,9 +32,12 @@ DeviceProcessEvents
 ```
 
 ## 01.9. Estudos de caso sobre ataques reais
-### 
+### Comissão Europeia confirma violação de dados na nuvem
+https://www.infosecurity-magazine.com/news/european-commission-cloud-data/
 
-### 
+### Governos europeus são alvo de ataques de dia zero direcionados à Ivanti.
+https://www.infosecurity-magazine.com/news/european-governments-zeroday/
+
 
 ## 01.10. Exercícios Práticos com Simulações e Desafios
 
