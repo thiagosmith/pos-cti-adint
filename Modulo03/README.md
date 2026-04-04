@@ -279,10 +279,10 @@ Cenário: Um atacante executa um script PowerShell obfuscado via -EncodedCommand
 O script realiza conexão com C2 e baixa um payload. 
 
 Passos:
-Executar script malicioso em ambiente controlado.
-Coletar logs de eventos ID 1 (Process Creation).
-Filtrar por processos com argumentos suspeitos.
-Criar regra Sigma para detectar padrões.
+- Executar script malicioso em ambiente controlado.
+- Coletar logs de eventos ID 1 (Process Creation).
+- Filtrar por processos com argumentos suspeitos.
+- Criar regra Sigma para detectar padrões.
 
 Execução prática
 - Criação do Malware
