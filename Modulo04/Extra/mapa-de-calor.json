@@ -2,7 +2,8 @@
   "version": "4.5",
   "name": "Mapa de Calor TTPs - WebServer, Workstation, SQL Server, Domain Controller",
   "description": "Camada com priorização de técnicas mais relevantes",
-  "domain": "enterprise-attack",
+  "domain": "fail.corp",
+  "platforms": "Windows e Linux",
   "techniques": [
     { "techniqueID": "T1190", "comment": "WebServer - Acesso inicial", "score": 1.0 },
     { "techniqueID": "T1552.001", "comment": "WebServer - Pós Exploração", "score": 0.7 },
@@ -45,9 +46,9 @@
     "maxValue": 1
   },
   "legendItems": [
-    { "label": "Baixa prioridade", "color": "#ffffff" },
-    { "label": "Média prioridade", "color": "#ffcc00" },
-    { "label": "Alta prioridade", "color": "#ff0000" }
+    { "label": "Baixa", "color": "#ffffff" },
+    { "label": "Média", "color": "#ffcc00" },
+    { "label": "Alta", "color": "#ff0000" }
   ],
   "showTacticRowBackground": true,
   "selectTechniquesAcrossTactics": true
