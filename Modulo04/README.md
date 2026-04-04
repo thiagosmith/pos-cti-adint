@@ -203,8 +203,144 @@ Script update.ps1 modificado e executado
 
 ## 05. Simulação de Ataque APT
 
+### 05.4. Demonstração da simulação de Ataque APT
+Escopo: www.fail.corp
+
+Fora do escopo: Engenharia Social, Phishing, DoS e DDoS
+
+Hosts: 
+- WebServer
+- Workstation
+- SQL Server
+- Domain Controller
+
+Objetivos:
+- Acesso inicial via aplicação web
+- Pivoteamento para rede interna
+- Movimentação Lateral
+- Dump de hashes
+- Keberoasting
+- Obter acesso completo ao DC
+
+### 05.5. Mapeamento de TTPs com MITRE - WebServer
+Acesso inicial: 
+- T1190 - Exploit Public-Facing Application
+
+Pós Exploração: 
+- T1552.001 - Unsecured Credentials: Configuration Files
+- T1005 – Data from Local System
+- T1110.002 – Password Cracking
+- T1078 – Valid Accounts
+- T1087.001 – Account Discovery: Local Account
+- T1110.003 – Brute Force: Password Spraying
+- T1016 – System Network Configuration Discovery
+
+Pivot: T1090 – Proxy (Pivoting) & T1046 – Network Service Discovery
+
+### 05.5. Mapeamento de TTPs com MITRE - Workstation
+Movimentação lateral: 
+- T1078 – Valid Accounts & T1021 – Remote Services
+
+Escalação de Privilégios:
+- T1134.003 – Access Token Manipulation: Token Impersonation/Theft
+
+Pós Exploração:
+- T1003 – OS Credential Dumping
+- T1003.002 - Security Account Manager (SAM)
+- T1558.003 – Steal or Forge Kerberos Tickets: Kerberoasting
+- T1110.002 – Password Cracking
+
+### 05.5. Mapeamento de TTPs com MITRE - SQL Server
+Pass The Hash: 
+- T1550.002 – Use Alternate Authentication Material: Pass the Hash
+
+Pós Exploração:
+- T1003 – OS Credential Dumping
+- T1003.002 - Security Account Manager (SAM)
+- T1003.004 - LSA Secrets
+
+Movimentação lateral:
+- T1078 – Valid Accounts
+- T1021 – Remote Services
+- T1005 – Data from Local System
+- T1505.001 – Server Software Component: SQL Stored Procedures
+
+### 05.5. Mapeamento de TTPs com MITRE - Domain Controller
+Movimentação lateral: 
+- T1078 – Valid Accounts & T1021 – Remote Services
+
+Escalação de Privilégios:
+- T1134.003 – Access Token Manipulation: Token Impersonation/Theft
+
+Pós Exploração:
+- T1003 – OS Credential Dumping
+- T1003.003 – Dump de credenciais do Active Directory (NTDS.dit)
+
+Pass The Hash:
+- T1550.002 – Use Alternate Authentication Material: Pass the Hash
+
+05.5. Mapeamento de TTPs com MITRE
+```
+{
+  "version": "4.5",
+  "name": "Mapeamento TTPs - WebServer, Workstation, SQL Server, Domain Controller",
+  "description": "Camada de técnicas mapeadas para diferentes alvos (WebServer, Workstation, SQL Server, Domain Controller)",
+  "domain": "enterprise-attack",
+  "techniques": [
+    { "techniqueID": "T1190", "comment": "WebServer - Acesso inicial" },
+    { "techniqueID": "T1552.001", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1005", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1110.002", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1078", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1087.001", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1110.003", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1016", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1090", "comment": "WebServer - Pivoting" },
+    { "techniqueID": "T1046", "comment": "WebServer - Pivoting" },
+
+    { "techniqueID": "T1078", "comment": "Workstation - Movimentação lateral" },
+    { "techniqueID": "T1021", "comment": "Workstation - Movimentação lateral" },
+    { "techniqueID": "T1134.003", "comment": "Workstation - Escalação de Privilégios" },
+    { "techniqueID": "T1003", "comment": "Workstation - Pós Exploração" },
+    { "techniqueID": "T1003.002", "comment": "Workstation - Pós Exploração" },
+    { "techniqueID": "T1558.003", "comment": "Workstation - Pós Exploração" },
+    { "techniqueID": "T1110.002", "comment": "Workstation - Pós Exploração" },
+
+    { "techniqueID": "T1550.002", "comment": "SQL Server - Pass The Hash" },
+    { "techniqueID": "T1003", "comment": "SQL Server - Pós Exploração" },
+    { "techniqueID": "T1003.002", "comment": "SQL Server - Pós Exploração" },
+    { "techniqueID": "T1003.004", "comment": "SQL Server - Pós Exploração" },
+    { "techniqueID": "T1078", "comment": "SQL Server - Movimentação lateral" },
+    { "techniqueID": "T1021", "comment": "SQL Server - Movimentação lateral" },
+    { "techniqueID": "T1005", "comment": "SQL Server - Movimentação lateral" },
+    { "techniqueID": "T1505.001", "comment": "SQL Server - Movimentação lateral" },
+
+    { "techniqueID": "T1078", "comment": "Domain Controller - Movimentação lateral" },
+    { "techniqueID": "T1021", "comment": "Domain Controller - Movimentação lateral" },
+    { "techniqueID": "T1134.003", "comment": "Domain Controller - Escalação de Privilégios" },
+    { "techniqueID": "T1003", "comment": "Domain Controller - Pós Exploração" },
+    { "techniqueID": "T1003.003", "comment": "Domain Controller - Pós Exploração" },
+    { "techniqueID": "T1550.002", "comment": "Domain Controller - Pass The Hash" }
+  ],
+  "gradient": {
+    "colors": ["#ffffff", "#ff6666"],
+    "minValue": 0,
+    "maxValue": 1
+  },
+  "legendItems": [
+    { "label": "Técnicas mapeadas", "color": "#ff6666" }
+  ],
+  "showTacticRowBackground": true,
+  "selectTechniquesAcrossTactics": true
+}
+```
 
 
 
 
+
+
+
+
+- 
 
