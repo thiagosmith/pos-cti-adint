@@ -1,0 +1,52 @@
+{
+  "version": "4.5",
+  "name": "Mapeamento TTPs - WebServer, Workstation, SQL Server, Domain Controller",
+  "description": "Camada de técnicas mapeadas para diferentes alvos (WebServer, Workstation, SQL Server, Domain Controller)",
+  "domain": "enterprise-attack",
+  "techniques": [
+    { "techniqueID": "T1190", "comment": "WebServer - Acesso inicial" },
+    { "techniqueID": "T1552.001", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1005", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1110.002", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1078", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1087.001", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1110.003", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1016", "comment": "WebServer - Pós Exploração" },
+    { "techniqueID": "T1090", "comment": "WebServer - Pivoting" },
+    { "techniqueID": "T1046", "comment": "WebServer - Pivoting" },
+
+    { "techniqueID": "T1078", "comment": "Workstation - Movimentação lateral" },
+    { "techniqueID": "T1021", "comment": "Workstation - Movimentação lateral" },
+    { "techniqueID": "T1134.003", "comment": "Workstation - Escalação de Privilégios" },
+    { "techniqueID": "T1003", "comment": "Workstation - Pós Exploração" },
+    { "techniqueID": "T1003.002", "comment": "Workstation - Pós Exploração" },
+    { "techniqueID": "T1558.003", "comment": "Workstation - Pós Exploração" },
+    { "techniqueID": "T1110.002", "comment": "Workstation - Pós Exploração" },
+
+    { "techniqueID": "T1550.002", "comment": "SQL Server - Pass The Hash" },
+    { "techniqueID": "T1003", "comment": "SQL Server - Pós Exploração" },
+    { "techniqueID": "T1003.002", "comment": "SQL Server - Pós Exploração" },
+    { "techniqueID": "T1003.004", "comment": "SQL Server - Pós Exploração" },
+    { "techniqueID": "T1078", "comment": "SQL Server - Movimentação lateral" },
+    { "techniqueID": "T1021", "comment": "SQL Server - Movimentação lateral" },
+    { "techniqueID": "T1005", "comment": "SQL Server - Movimentação lateral" },
+    { "techniqueID": "T1505.001", "comment": "SQL Server - Movimentação lateral" },
+
+    { "techniqueID": "T1078", "comment": "Domain Controller - Movimentação lateral" },
+    { "techniqueID": "T1021", "comment": "Domain Controller - Movimentação lateral" },
+    { "techniqueID": "T1134.003", "comment": "Domain Controller - Escalação de Privilégios" },
+    { "techniqueID": "T1003", "comment": "Domain Controller - Pós Exploração" },
+    { "techniqueID": "T1003.003", "comment": "Domain Controller - Pós Exploração" },
+    { "techniqueID": "T1550.002", "comment": "Domain Controller - Pass The Hash" }
+  ],
+  "gradient": {
+    "colors": ["#ffffff", "#ff6666"],
+    "minValue": 0,
+    "maxValue": 1
+  },
+  "legendItems": [
+    { "label": "Técnicas mapeadas", "color": "#ff6666" }
+  ],
+  "showTacticRowBackground": true,
+  "selectTechniquesAcrossTactics": true
+}
