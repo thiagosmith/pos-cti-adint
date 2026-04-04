@@ -264,7 +264,7 @@ ParentImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 ParentCommandLine: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -EncodedCommand YwBtAGQAIAAvAGMAIAAnAGgAbwBzAHQAbgBhAG0AZQAgACYAJgAgAHcAaABvAGEAbQBpACAAJgAmACAAdwBoAG8AYQBtAGkAIAAvAHAAcgBpAHYAIAAmACYAIABpAHAAYwBvAG4AZgBpAGcAIAAvAGEAbABsACAAJgAmACAAZABpAHIAIABcACAAJgAmACAAdAByAGUAZQAgAC8AYQAgAC8AZgAgAEMAOgBcAHUAcwBlAHIAcwBcACcA
 ParentUser: DESKTOP-7E8SQOV\admin
 ```
-Executando comando como outro usuário
+Executando comandos como outro usuário
 ```
 runas /user:smith "whoami"
 ```
