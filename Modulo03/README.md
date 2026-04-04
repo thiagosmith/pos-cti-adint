@@ -337,7 +337,7 @@ powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOA
 ```
 Regra Sigma para detectar padrões
 ```
-itle: Suspicious PowerShell EncodedCommand Execution 
+title: Suspicious PowerShell EncodedCommand Execution 
 id: 12345678-90ab-cdef-1234-567890abcdef 
 status: experimental 
 description: Detects PowerShell execution with obfuscated commands via -EncodedCommand 
