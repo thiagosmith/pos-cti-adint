@@ -186,7 +186,6 @@ Baixando Script que encoda o comando em base64
 https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo03/scripts/encode-command.py
 ```
 
-
 Editando o script de acordo com o nosso comando:
 ```
 nano encode-command.py
@@ -265,3 +264,11 @@ ParentImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
 ParentCommandLine: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -EncodedCommand YwBtAGQAIAAvAGMAIAAnAGgAbwBzAHQAbgBhAG0AZQAgACYAJgAgAHcAaABvAGEAbQBpACAAJgAmACAAdwBoAG8AYQBtAGkAIAAvAHAAcgBpAHYAIAAmACYAIABpAHAAYwBvAG4AZgBpAGcAIAAvAGEAbABsACAAJgAmACAAZABpAHIAIABcACAAJgAmACAAdAByAGUAZQAgAC8AYQAgAC8AZgAgAEMAOgBcAHUAcwBlAHIAcwBcACcA
 ParentUser: DESKTOP-7E8SQOV\admin
 ```
+Executando comando como outro usuário
+```
+runas /user:smith "whoami"
+```
+```
+runas /user:smith "cmd"
+```
+O comando "runas" sempre exige que usuário digite a senha para executar
