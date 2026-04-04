@@ -362,3 +362,203 @@ tags:
     - attack.execution
     - attack.t1059.001
 ```
+
+## 02. Análise de Campanhas de Malware
+Recursos Complementares 
+
+MITRE ATT&CK Navigator: https://mitre-attack.github.io/attack-navigator/
+
+Malpedia - Emotet: 
+
+https://malpedia.caad.fkie.fraunhofer.de/details/win.emotet
+
+CISA Threat Intelligence Report - QakBot:
+
+https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-242a
+
+TrickBot Analysis - DFIR Report: 
+
+https://thedfirreport.com/2022/02/21/qbot-and-zerologon-lead-to-full-domain-compromise/
+
+
+03. Coleta e Análise de Artefatos Maliciosos
+MalwareBazaar:
+
+https://bazaar.abuse.ch/
+
+Ficha de artefato:
+
+https://github.com/thiagosmith/pos-cti-adint/tree/main/Modulo03/Extra
+
+Recursos Complementares 
+
+MalwareBazaar API
+
+https://bazaar.abuse.ch/api/
+
+Any.Run Public Submissions
+
+https://any.run/community/
+
+AlienVault OTX Pulses 
+
+https://otx.alienvault.com/
+
+YARA Rules Repository
+
+https://github.com/Yara-Rules/rules
+
+## 04. Extração de IOCs e Criação de Regras
+Regras Yara - Exemplo: Detecta dropper do Emotet
+```
+rule Emotet_Dropper { 
+    meta: 
+        description = "Detecta dropper do Emotet" 
+        author = "Thiago"
+    strings:
+        $mutex = "Global\\EmotetMutex"
+        $task = "schtasks /create /tn"
+    condition: 
+        any of them 
+}
+```
+
+Regras Sigma - Exemplo: Execução de PowerShell obfuscado (MITRE T1059.001)
+```
+title: PowerShell EncodedCommand Execution 
+id: 1234abcd-5678-efgh-9101-ijklmnopqrst 
+status: experimental 
+description: Detecta uso de PowerShell com comando codificado (T1059.001) 
+author: Smith 
+logsource:
+    product: windows 
+    service: sysmon 
+detection:
+    selection: 
+        Image|endswith: 'powershell.exe' 
+        CommandLine|contains: 
+            - '-EncodedCommand'
+            - 'FromBase64String'
+            - 'Invoke-Expression'
+    condition: selection 
+level: high 
+    tags:
+        - attack.execution 
+        - attack.t1059.00
+```
+
+Análise de Execução do Agent Tesla via Sysmon + Criação de Regras Sigma e YARA
+
+Objetivo:
+
+Identificar a execução do malware Agent Tesla em logs de Sysmon, extrair artefatos maliciosos e criar regras de detecção com Sigma (para SIEM) e YARA (para análise de arquivos).
+
+Tarefas: 
+- Analisar o log de Sysmon e identificar padrões suspeitos.
+- Buscar o hash do arquivo em MalwareBazaar e correlacionar com a campanha.
+- Criar a regra Sigma para ambiente SIEM.
+- Criar a regra YARA para uso em sandbox ou ferramenta de escaneamento local.
+- Documentar os achados e propor medidas de mitigação.
+
+Log Simulado de Sysmon (ID 1 - Process Creation)
+```
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+    <System>
+        <Provider Name="Microsoft-Windows-Sysmon" />
+        <EventID>1</EventID>
+        <TimeCreated SystemTime="2026-04-08T11:42:18.123Z" />
+    </System>
+    <EventData>
+         <Data Name="UtcTime">2026-04-08 11:42:18.123</Data>
+        <Data Name="ProcessGuid">{a1b2c3d4-e5f6-7890-abcd-000000000002}</Data>
+        <Data Name="ProcessId">5320</Data>
+        <Data Name="Image">C:\Users\Smith\AppData\Roaming\Tesla\invoice.exe</Data>
+        <Data Name="CommandLine">"C:\Users\Smith\AppData\Roaming\Tesla\invoice.exe"</Data>
+        <Data Name="ParentImage">C:\Windows\explorer.exe</Data>
+        <Data Name="ParentCommandLine">explorer.exe</Data>
+        <Data Name="User">ADINT\Smith</Data>
+    </EventData>
+</Event>
+```
+Artefatos Extraídos 
+- Hash do arquivo: SHA256 obtido via sandbox ou hash local
+- Nome do executável: invoice.exe
+- Caminho de execução: AppData\Roaming\Tesla\
+- Strings suspeitas: smtp.gmail.com, System.Net.Mail.SmtpClient, ConfuserEx, Global\TeslaMutex
+
+Regra Sigma
+```
+title: Agent Tesla Execution from AppData 
+id: agent-tesla-appdata-execution 
+status: experimental 
+description: Detecta execução de Agent Tesla a partir de diretório AppData\Roaming
+author: Smith 
+logsource: 
+    product: windows 
+    service: sysmon 
+detection: 
+    selection: 
+        Image|contains: 'AppData\\Roaming\\Tesla\\' 
+        CommandLine|contains: 'invoice.exe'
+    condition: selection 
+level: high 
+tags: 
+    -attack.execution 
+    - attack.t1059
+```
+
+Regra YARA
+```
+rule AgentTesla_Obfuscated { 
+    meta: 
+         description = "Detecta amostra obfuscada do Agent Tesla" 
+        author = "Smith" 
+        malware_family = "Agent Tesla" 
+        date = "2025-10-06"
+    strings:
+        $smtp = "smtp.gmail.com"
+        $netmail = "System.Net.Mail.SmtpClient"
+        $packer = "ConfuserEx"
+        $mutex = "Global\\TeslaMutex"
+    condition: 
+        any of them 
+```
+
+Recursos Complementares 
+
+- MalwareBazaar
+
+https://bazaar.abuse.ch/
+
+- Hybrid Analysis
+
+https://www.hybrid-analysis.com
+
+- YARA Documentation
+
+https://yara.readthedocs.io/en/latest/
+
+- SigmaHQ
+
+https://github.com/SigmaHQ/sigma
+
+## 05. Estudo de Caso – Campanha Real de Phishing com Malware "SORVEPOTEL"
+
+Link do Malware para download:
+
+https://github.com/thiagosmith/pos-cti-adint/blob/main/Modulo03/Extra/ComprovanteSantander-senha-password_2.7z
+
+Senha:
+```
+password
+```
+
+
+Fontes e Recursos 
+Trend Micro – Campanha SORVEPOTEL:
+
+https://www.trendmicro.com/pt_br/research/25/j/self-propagating-malware-spreads-via-whatsapp.html
+
+TecMundo – Brasil é alvo de vírus que se espalha sozinho pelo WhatsApp:
+
+https://www.tecmundo.com.br/seguranca/407548-brasil-e-alvo-de-virus-que-se-espalha-sozinho-pelo-whatsapp.htm
