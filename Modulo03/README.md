@@ -76,3 +76,32 @@ Executando o comando encodade no Windows
 ```
 powershell -EncodedCommand YwBtAGQAIAAvAGMAIAAnAGgAbwBzAHQAbgBhAG0AZQAgACYAJgAgAHcAaABvAGEAbQBpACAAJgAmACAAdwBoAG8AYQBtAGkAIAAvAHAAcgBpAHYAIAAmACYAIABpAHAAYwBvAG4AZgBpAGcAIAAvAGEAbABsACAAJgAmACAAZABpAHIAIABcACAAJgAmACAAdAByAGUAZQAgAC8AYQAgAC8AZgAgAEMAOgBcAHUAcwBlAHIAcwBcACcA
 ```
+
+Microsoft-Windows-Sysmon/Operational
+Enevt ID: 1
+```
+Process Create:
+RuleName: -
+UtcTime: 2026-04-04 18:01:56.374
+ProcessGuid: {2d5d4cbb-5214-69d1-3609-000000001200}
+ProcessId: 13880
+Image: C:\Windows\System32\cmd.exe
+FileVersion: 10.0.19041.4355 (WinBuild.160101.0800)
+Description: Windows Command Processor
+Product: Microsoft® Windows® Operating System
+Company: Microsoft Corporation
+OriginalFileName: Cmd.Exe
+CommandLine: "C:\Windows\system32\cmd.exe" /c "hostname && whoami && whoami /priv && ipconfig /all && dir \ && tree /a /f C:\users\"
+CurrentDirectory: C:\Users\admin\
+User: DESKTOP-7E8SQOV\admin
+LogonGuid: {2d5d4cbb-18e3-69d0-3819-060000000000}
+LogonId: 0x61938
+TerminalSessionId: 1
+IntegrityLevel: Medium
+Hashes: MD5=2B40C98ED0F7A1D3B091A3E8353132DC,SHA256=BADF4752413CB0CBDC03FB95820CA167F0CDC63B597CCDB5EF43111180E088B0,IMPHASH=272245E2988E1E430500B852C4FB5E18
+ParentProcessGuid: {2d5d4cbb-5214-69d1-3509-000000001200}
+ParentProcessId: 10512
+ParentImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+ParentCommandLine: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -EncodedCommand YwBtAGQAIAAvAGMAIAAnAGgAbwBzAHQAbgBhAG0AZQAgACYAJgAgAHcAaABvAGEAbQBpACAAJgAmACAAdwBoAG8AYQBtAGkAIAAvAHAAcgBpAHYAIAAmACYAIABpAHAAYwBvAG4AZgBpAGcAIAAvAGEAbABsACAAJgAmACAAZABpAHIAIABcACAAJgAmACAAdAByAGUAZQAgAC8AYQAgAC8AZgAgAEMAOgBcAHUAcwBlAHIAcwBcACcA
+ParentUser: DESKTOP-7E8SQOV\admin
+```
