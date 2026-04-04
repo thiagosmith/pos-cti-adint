@@ -70,12 +70,19 @@ location.city: Rio-de-Janeiro
 ## Análise de Tráfego Malicioso (PCAPs)
 Fontes de PCAPs reais: 
 • Malware-Traffic-Analysis.net
+
 https://www.malware-traffic-analysis.net/
+
 • Contagio Malware Dump
+
 https://contagiodump.blogspot.com/
+
 • PacketTotal
+
 https://lab.dynamite.ai/
+
 • Any.Run (interativo, pode exportar PCAPs)
+
 https://any.run/
 
 ### Estudo de caso prático PCAP: 
@@ -88,6 +95,7 @@ LUMMA STEALER INFECTION WITH FOLLOW-UP MALWARE
 https://www.malware-traffic-analysis.net/2025/09/24/2025-09-24-traffic-from-running-Setup.exe.pcap.zip
 
 Análise automatizada
+
 https://apackets.com/
 
 ## Estudo de Caso: Exploração de Apache e ransomware LockBit
