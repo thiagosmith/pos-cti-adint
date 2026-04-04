@@ -1,9 +1,9 @@
 # Caça a Ameaças Persistentes (APTs)
-- 1. Padrões de Ataque de APTs Living-off-the-Land (LotL)
-- 2. Táticas de Evasão em EDRs
-- 3. Uso do MITRE ATT&CK para Construção de Hipóteses
-- 4. Identificação de artefatos maliciosos
-- 5. Simulação de Ataque APT
+01. Padrões de Ataque de APTs Living-off-the-Land (LotL)
+02. Táticas de Evasão em EDRs
+03. Uso do MITRE ATT&CK para Construção de Hipóteses
+04. Identificação de artefatos maliciosos
+05. Simulação de Ataque APT
 
 ## 01.5. Atividade Prática
 Desafio: Analisar um conjunto de logs simulados (Sysmon, Security, PowerShell) e identificar:
