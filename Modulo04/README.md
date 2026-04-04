@@ -181,16 +181,20 @@ AccessType: Write
 SubjectUserName: SYSTEM
 ```
 ### Resultado
-- Persistência: 
+- Persistência:
+
 Criação de tarefa agendada (EventID: 4698) com execução de script PowerShell → Técnica T1053.005 
 
 - Execução: 
+
 Uso de PowerShell com ExecutionPolicy e Invoke-Expression(IEX) → Técnica 1059.001 
 
 - C2: 
+
 Comunicação com IP externo via PowerShell → Técnica T1071.001 
 
 - Artefato: 
+
 Script update.ps1 modificado e executado
 
 ## 05. Simulação de Ataque APT
