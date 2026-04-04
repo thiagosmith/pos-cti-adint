@@ -120,7 +120,7 @@ PORT     STATE SERVICE       VERSION
 Enumerando informações do alvo com NetExec
 SMB
 ```
-$ nxc smb 192.168.2.126
+nxc smb 192.168.2.126
 ```
 - Resultado
 ```
