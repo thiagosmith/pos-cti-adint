@@ -381,7 +381,7 @@ TrickBot Analysis - DFIR Report:
 https://thedfirreport.com/2022/02/21/qbot-and-zerologon-lead-to-full-domain-compromise/
 
 
-03. Coleta e Análise de Artefatos Maliciosos
+## 03. Coleta e Análise de Artefatos Maliciosos
 MalwareBazaar:
 
 https://bazaar.abuse.ch/
