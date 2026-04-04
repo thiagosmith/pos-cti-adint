@@ -28,14 +28,17 @@ ftp 122.28.45.37
 ## Ferramentas de OSINT
 ### DNSdumpster
 Enumeração de subdomínios e visualização de registros DNS.
+
 Link: https://dnsdumpster.com/
 
 ### crt.sh
 Consulta de certificados SSL públicos. 
+
 Link: https://crt.sh/
 
 ### Shodan
 Busca por dispositivos conectados à internet e serviços expostos.
+
 Link: https://www.shodan.io/
 
 Operadores
@@ -54,6 +57,7 @@ net: busca rede
 
 ### Censys
 Escaneamento global de serviços e certificados SSL. 
+
 Link: https://search.censys.io/
 
 Operadores
