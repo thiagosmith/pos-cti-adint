@@ -280,6 +280,10 @@ Pass The Hash:
 - T1550.002 – Use Alternate Authentication Material: Pass the Hash
 
 05.5. Mapeamento de TTPs com MITRE
+MITRE Navigator
+
+https://mitre-attack.github.io/attack-navigator/
+
 ```
 {
   "version": "4.5",
