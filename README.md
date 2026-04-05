@@ -10,4 +10,4 @@ https://www.kali.org/get-kali/#kali-platforms
 
 https://drive.google.com/file/d/1NvGq_lM4VbzOEJ3xlg7tFpLN-0EkgmnT/view?usp=sharing
 
-- Ambinte criado com VMWare 
+- Ambiente criado com VMWare 
