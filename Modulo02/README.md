@@ -88,11 +88,11 @@ https://any.run/
 ### Estudo de caso prático PCAP: 
 2023-AsyncRAT-infection.pcap (disponível em malware-traffic-analysis.net)
 
-​https://www.malware-traffic-analysis.net/2023/10/23/2023-10-23-404TDS-Async-RAT-infection-traffic.pcap.zip
+​https://www.malware-traffic-analysis[.]net/2023/10/23/2023-10-23-404TDS-Async-RAT-infection-traffic.pcap.zip
 
 LUMMA STEALER INFECTION WITH FOLLOW-UP MALWARE 
 
-https://www.malware-traffic-analysis.net/2025/09/24/2025-09-24-traffic-from-running-Setup.exe.pcap.zip
+https://www.malware-traffic-analysis[.]net/2025/09/24/2025-09-24-traffic-from-running-Setup.exe.pcap.zip
 
 Análise automatizada
 
