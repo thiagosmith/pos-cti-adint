@@ -388,7 +388,7 @@ https://bazaar.abuse.ch/
 
 Ficha de artefato:
 
-https://github.com/thiagosmith/pos-cti-adint/tree/main/Modulo03/Extra
+https://github[.]com/thiagosmith/pos-cti-adint/tree/main/Modulo03/Extra
 
 Recursos Complementares 
 
