@@ -4,11 +4,11 @@ Repositório do Módulo Threat Hunting da Pós-Graduação em Cyber Threat Intel
 Informações gerais:
 - Baixar a VM do Kali Linux de acordo com a sua plataforma de utilização, caso não possua.
 
-https://www.kali.org/get-kali/#kali-platforms
+
 
 - Baixar a VM Windows 10 para realização das atividades práticas.
 
-https://drive.google.com/file/d/1NvGq_lM4VbzOEJ3xlg7tFpLN-0EkgmnT/view?usp=sharing
+
 
 - Ambiente criado com VMWare 
 
