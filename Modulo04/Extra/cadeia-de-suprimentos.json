@@ -39,8 +39,8 @@
     "maxValue": 10
   },
   "legendItems": [
-    { "label": "Baixa prioridade", "color": "#ffe0b2" },
-    { "label": "Média prioridade", "color": "#ff9800" },
-    { "label": "Alta prioridade", "color": "#e65100" }
+    { "label": "Baixa", "color": "#ffe0b2" },
+    { "label": "Média", "color": "#ff9800" },
+    { "label": "Alta", "color": "#e65100" }
   ]
 }
