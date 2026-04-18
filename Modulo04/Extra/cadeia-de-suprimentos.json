@@ -1,0 +1,46 @@
+{
+  "version": "4.5",
+  "name": "Hunter Vagas - Simulação APT",
+  "description": "Mapa de calor de TTPs usados no ataque simulado contra Hunter Vagas e RH Tech",
+  "domain": "enterprise-attack",
+  "filters": {
+    "platforms": [
+      "Windows",
+      "Linux"
+    ]
+  },
+  "sorting": "score",
+  "viewMode": "heatmap",
+  "hideDisabled": false,
+  "techniques": [
+    { "techniqueID": "T1595", "score": 3, "comment": "Active Scanning (nmap, nuclei)" },
+    { "techniqueID": "T1590", "score": 3, "comment": "Gather Victim Network Information" },
+    { "techniqueID": "T1190", "score": 9, "comment": "Exploit Public-Facing Application (Nginx UI)" },
+    { "techniqueID": "T1078", "score": 8, "comment": "Valid Accounts (uso de chave SSH e credenciais)" },
+    { "techniqueID": "T1548.003", "score": 7, "comment": "Sudo Abuse via GTFOBins" },
+    { "techniqueID": "T1554", "score": 8, "comment": "Compromise Client Software Binary (troca de arquivo de download)" },
+    { "techniqueID": "T1566.002", "score": 9, "comment": "Spearphishing Attachment" },
+    { "techniqueID": "T1204", "score": 9, "comment": "User Execution (arquivo malicioso)" },
+    { "techniqueID": "T1557", "score": 8, "comment": "Adversary-in-the-Middle (Responder NTLMv2)" },
+    { "techniqueID": "T1558.003", "score": 8, "comment": "Kerberoasting (Rubeus)" },
+    { "techniqueID": "T1021.001", "score": 7, "comment": "Remote Desktop Protocol (movimentação lateral)" },
+    { "techniqueID": "T1098", "score": 6, "comment": "Account Manipulation (troca senha usuário backup)" },
+    { "techniqueID": "T1003.002", "score": 9, "comment": "Credential Dumping - SAM" },
+    { "techniqueID": "T1003.001", "score": 9, "comment": "Credential Dumping - LSASS (Mimikatz)" },
+    { "techniqueID": "T1021.006", "score": 7, "comment": "WinRM (movimentação lateral)" },
+    { "techniqueID": "T1003.006", "score": 10, "comment": "Credential Dumping - DCSync (secretsdump)" },
+    { "techniqueID": "T1486", "score": 10, "comment": "Data Encrypted for Impact (Ransomware)" },
+    { "techniqueID": "T1105", "score": 8, "comment": "Ingress Tool Transfer (Invoke-WebRequest)" },
+    { "techniqueID": "T1059", "score": 7, "comment": "Command and Scripting Interpreter (execução remota)" }
+  ],
+  "gradient": {
+    "colors": ["#ffffff", "#ffe0b2", "#ff9800", "#e65100"],
+    "minValue": 0,
+    "maxValue": 10
+  },
+  "legendItems": [
+    { "label": "Baixa prioridade", "color": "#ffe0b2" },
+    { "label": "Média prioridade", "color": "#ff9800" },
+    { "label": "Alta prioridade", "color": "#e65100" }
+  ]
+}
