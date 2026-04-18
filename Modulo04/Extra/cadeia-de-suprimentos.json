@@ -2,7 +2,7 @@
   "version": "4.5",
   "name": "Hunter Vagas - Simulação APT",
   "description": "Mapa de calor de TTPs usados no ataque simulado contra Hunter Vagas e RH Tech",
-  "domain": "enterprise-attack",
+  "domain": "HUNTERVAGAS.CORP",
   "filters": {
     "platforms": [
       "Windows",
