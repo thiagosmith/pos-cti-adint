@@ -305,7 +305,7 @@ tar zxvf v4.0.tar.gz
 ```
 - Acessando o diretório
 ```
-cd spiderfoot
+cd spiderfoot-4.0
 ```
 - Instalando dependências
 ```
